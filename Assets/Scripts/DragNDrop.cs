@@ -1,4 +1,4 @@
-        using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,5 +23,24 @@ public class DragNDrop : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
+        if(CheckOnFire())
+        {
+            StartCooking();
+        }
+        else
+        {
+            transform.position = startPosition;
+        }
+    }
+
+    private bool CheckOnFire()
+    {
+        Collider2D fireCollider = Physics2D.OverlapPoint(transform.position);
+        return fireCollider != null && fireCollider.CompareTag("Fire");
+    }
+
+    private void StartCooking()
+    {
+        GetComponent<IngradientsCooking>().StartCooking();
     }
 }
