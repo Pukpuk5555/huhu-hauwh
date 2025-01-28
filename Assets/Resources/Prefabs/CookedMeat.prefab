@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7334552580919127477}
   - component: {fileID: -6976571149190801222}
   - component: {fileID: 7971881403628435131}
+  - component: {fileID: -6479801396848009442}
+  - component: {fileID: 761065894441320107}
   m_Layer: 0
   m_Name: CookedMeat
   m_TagString: Untagged
@@ -83,7 +85,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &-6976571149190801222
@@ -186,3 +188,28 @@ PolygonCollider2D:
       - {x: 0.50507593, y: -0.11315644}
       - {x: 0.50507545, y: 0.14251065}
   m_UseDelaunayMesh: 0
+--- !u!114 &-6479801396848009442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244145319130350264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e295cfd86e65b4f8bc0b7b12b6bc25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireObject: {fileID: 0}
+--- !u!114 &761065894441320107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244145319130350264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f92ace18de2513418e31aec465c6643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
