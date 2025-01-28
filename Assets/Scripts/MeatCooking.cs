@@ -14,6 +14,7 @@ public class MeatCooking : IngradientsCooking
 
     protected override void Update()
     {
+        base.Update();
         OnCooking();
     }
 

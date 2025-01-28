@@ -624,12 +624,11 @@ GameObject:
   - component: {fileID: 451773776}
   - component: {fileID: 451773775}
   - component: {fileID: 451773778}
-  - component: {fileID: 451773777}
   - component: {fileID: 451773779}
   - component: {fileID: 451773780}
   - component: {fileID: 451773781}
   m_Layer: 0
-  m_Name: rawMeat
+  m_Name: RawMeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,18 +701,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 569632745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &451773777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451773774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78e2f0bc96ccec441af2b35c52ec4e23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &451773778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,7 +1399,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848410847}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1509,7 +1496,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1508298361023126840, guid: fba8c3a0bd6aa1d42bf8189aa3912f33, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6094634859624656637, guid: fba8c3a0bd6aa1d42bf8189aa3912f33, type: 3}
       propertyPath: m_Name
