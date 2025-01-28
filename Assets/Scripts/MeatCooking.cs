@@ -8,13 +8,19 @@ public class MeatCooking : IngradientsCooking
 
     protected override void Start()
     {
+        cookedSprite = Resources.Load<Sprite>("Sprites/CookedMeat");
         base.Start();
-        Debug.Log($"Cooking time for this meat is {cookingTime} seconds.");
+    }
+
+    private void Update()
+    {
+        OnCooking();
     }
 
     public override void StartCooking()
     {
         base.StartCooking();
+        Debug.Log($"Cooking time for this meat is {cookingTime} seconds.");
         Debug.Log("Meat is now cooking...");
     }
 

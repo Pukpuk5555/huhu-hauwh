@@ -6,37 +6,61 @@ public class DragNDrop : MonoBehaviour
 {
     private Vector3 startPosition;
     private bool isDragging = false;
+    private bool isOverFire = false;
+    [SerializeField] private GameObject fireObject;
 
     private void OnMouseDown()
     {
         startPosition = transform.position;
         isDragging = true;
+        Debug.Log("MouseDown");
     }
 
     private void OnMouseDrag()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = 10f;
-        transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+        if (isDragging)
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
+            transform.position = mousePosition;
+        }
+        Debug.Log("MouseDrag");
     }
 
     private void OnMouseUp()
     {
         isDragging = false;
-        if(CheckOnFire())
+        Debug.Log("MouseUp");
+        if (isOverFire)
         {
+            transform.position = fireObject.transform.position;
             StartCooking();
         }
         else
         {
             transform.position = startPosition;
+            Debug.Log("Ingredient returned to start position.");
         }
     }
 
-    private bool CheckOnFire()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Collider2D fireCollider = Physics2D.OverlapPoint(transform.position);
-        return fireCollider != null && fireCollider.CompareTag("Fire");
+        if(collision.CompareTag("Fire"))
+        {
+            isOverFire = true;
+            fireObject = collision.gameObject;
+            Debug.Log("Meat is over fire!");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Fire"))
+        {
+            isOverFire = false;
+            fireObject = null;
+            Debug.Log("Meat left the fire!");
+        }
     }
 
     private void StartCooking()

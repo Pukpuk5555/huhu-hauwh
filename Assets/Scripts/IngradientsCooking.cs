@@ -18,12 +18,6 @@ public class IngradientsCooking : MonoBehaviour
         rawColor = spriteRenderer.color;
     }
 
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-        OnCooking();
-    }
-
     public virtual void StartCooking()
     {
         if(!isCooking)
