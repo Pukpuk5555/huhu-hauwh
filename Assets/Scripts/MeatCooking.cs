@@ -12,7 +12,7 @@ public class MeatCooking : IngradientsCooking
         base.Start();
     }
 
-    private void Update()
+    protected override void Update()
     {
         OnCooking();
     }

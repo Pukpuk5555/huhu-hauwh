@@ -33,6 +33,7 @@ public class DragNDrop : MonoBehaviour
         Debug.Log("MouseUp");
         if (isOverFire)
         {
+            Debug.Log("On Fire!!!!");
             transform.position = fireObject.transform.position;
             StartCooking();
         }
@@ -48,6 +49,7 @@ public class DragNDrop : MonoBehaviour
         if(collision.CompareTag("Fire"))
         {
             isOverFire = true;
+            isDragging = false;
             fireObject = collision.gameObject;
             Debug.Log("Meat is over fire!");
         }
@@ -58,6 +60,7 @@ public class DragNDrop : MonoBehaviour
         if (collision.CompareTag("Fire"))
         {
             isOverFire = false;
+            isDragging = false;
             fireObject = null;
             Debug.Log("Meat left the fire!");
         }

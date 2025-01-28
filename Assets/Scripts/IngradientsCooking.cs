@@ -18,6 +18,11 @@ public class IngradientsCooking : MonoBehaviour
         rawColor = spriteRenderer.color;
     }
 
+    protected virtual void Update()
+    {
+        OnCooking();
+    }
+
     public virtual void StartCooking()
     {
         if(!isCooking)
