@@ -37,8 +37,9 @@ public class MeatCooking : IngradientsCooking
 
             if(progress >= 1f)
             {
-                spriteRenderer.sprite = cookedSprite;
-                spriteRenderer.color = Color.white;
+                GameObject cookedMeat = Instantiate(cookedPrefab, transform.position, Quaternion.identity);
+                cookedMeat.GetComponent<SpriteRenderer>().color = Color.white;
+                Destroy(gameObject);
                 isCooking = false;
                 Debug.Log("Meat is ready to serve!");
             }

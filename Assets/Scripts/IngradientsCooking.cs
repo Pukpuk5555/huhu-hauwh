@@ -6,7 +6,7 @@ public class IngradientsCooking : MonoBehaviour
 {
     protected SpriteRenderer spriteRenderer;
 
-    [SerializeField] protected Sprite cookedSprite;
+    [SerializeField] protected GameObject cookedPrefab;
     protected Color rawColor;
     protected Color cookedColor = new Color(0.6f, 0.3f, 0.2f);
     protected float cookingTimer = 0f;

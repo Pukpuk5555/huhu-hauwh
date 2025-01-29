@@ -7,7 +7,7 @@ public class DragNDrop : MonoBehaviour
     private Vector3 startPosition;
     private bool isDragging = false;
     private bool isOverFire = false;
-    [SerializeField] private GameObject fireObject;
+    private GameObject fireObject;
 
     private void OnMouseDown()
     {
