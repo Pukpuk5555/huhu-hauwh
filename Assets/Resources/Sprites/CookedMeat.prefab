@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7334552580919127477}
   - component: {fileID: -6976571149190801222}
   - component: {fileID: 7971881403628435131}
-  - component: {fileID: -6479801396848009442}
+  - component: {fileID: 2285040085144851505}
   m_Layer: 0
   m_Name: CookedMeat
   m_TagString: Untagged
@@ -143,7 +143,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -187,7 +187,7 @@ PolygonCollider2D:
       - {x: 0.50507593, y: -0.11315644}
       - {x: 0.50507545, y: 0.14251065}
   m_UseDelaunayMesh: 0
---- !u!114 &-6479801396848009442
+--- !u!114 &2285040085144851505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,7 +196,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8244145319130350264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e295cfd86e65b4f8bc0b7b12b6bc25, type: 3}
+  m_Script: {fileID: 11500000, guid: c878f465d8fa94c488567a541c56f720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireObject: {fileID: 0}
