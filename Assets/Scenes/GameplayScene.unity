@@ -726,6 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f92ace18de2513418e31aec465c6643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cookedSprite: {fileID: 21300000, guid: 120569e76d79f8d4096989e5e209ffa2, type: 3}
 --- !u!61 &451773780
 BoxCollider2D:
   m_ObjectHideFlags: 0

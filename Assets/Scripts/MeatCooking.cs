@@ -8,7 +8,7 @@ public class MeatCooking : IngradientsCooking
 
     protected override void Start()
     {
-        cookedSprite = Resources.Load<Sprite>("Sprites/CookedMeat");
+        //cookedSprite = Resources.Load<Sprite>("Sprites/CookedMeat");
         base.Start();
     }
 
@@ -38,6 +38,7 @@ public class MeatCooking : IngradientsCooking
             if(progress >= 1f)
             {
                 spriteRenderer.sprite = cookedSprite;
+                spriteRenderer.color = Color.white;
                 isCooking = false;
                 Debug.Log("Meat is ready to serve!");
             }
