@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DragNDrop : MonoBehaviour
+public class DragNDrop : MonoBehaviour
 {
     protected Vector3 startPosition;
     protected bool isDragging = false;
@@ -25,5 +25,9 @@ public abstract class DragNDrop : MonoBehaviour
         Debug.Log($"Mouse is dragging {gameObject.name}.");
     }
 
-    protected abstract void OnMouseUp();
+    protected virtual void OnMouseUp()
+    {
+        isDragging = false;
+        Debug.Log($"Nothing on drag.");
+    }
 }
