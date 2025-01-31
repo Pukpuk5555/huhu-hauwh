@@ -2,32 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CookedMeatDragAndDrop : MonoBehaviour
+public class CookedMeatDragAndDrop : DragNDrop
 {
-    private Vector3 startPosition;
-    private bool isDragging = false;
-
-    private void OnMouseDown()
+    protected override void OnMouseDown()
     {
-        startPosition = transform.position;
-        isDragging = true;
-        Debug.Log($"Mouse Down on {gameObject.name}.");
+        base.OnMouseDown();
     }
 
-    private void OnMouseDrag()
+    protected override void OnMouseDrag()
     {
-        if (isDragging)
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
-            transform.position = mousePosition;
-        }
-        Debug.Log($"Mouse is dragging {gameObject.name}.");
+        base.OnMouseDrag();
     }
 
-    private void OnMouseUp()
+    protected override void OnMouseUp()
     {
-        isDragging = false;
-        Debug.Log($"Nothing on drag.");
+
     }
 }

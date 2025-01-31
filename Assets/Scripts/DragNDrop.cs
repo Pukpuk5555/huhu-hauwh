@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragNDrop : MonoBehaviour
+public abstract class DragNDrop : MonoBehaviour
 {
-    private Vector3 startPosition;
-    private bool isDragging = false;
-    private bool isOverFire = false;
-    private GameObject fireObject;
+    protected Vector3 startPosition;
+    protected bool isDragging = false;
 
-    private void OnMouseDown()
+    protected virtual void OnMouseDown()
     {
         startPosition = transform.position;
         isDragging = true;
-        Debug.Log("MouseDown");
+        Debug.Log($"Mouse Down on {gameObject.name}.");
     }
 
-    private void OnMouseDrag()
+    protected virtual void OnMouseDrag()
     {
         if (isDragging)
         {
@@ -24,50 +22,8 @@ public class DragNDrop : MonoBehaviour
             mousePosition.z = 0;
             transform.position = mousePosition;
         }
-        Debug.Log("MouseDrag");
+        Debug.Log($"Mouse is dragging {gameObject.name}.");
     }
 
-    private void OnMouseUp()
-    {
-        isDragging = false;
-        Debug.Log("MouseUp");
-        if (isOverFire)
-        {
-            Debug.Log("On Fire!!!!");
-            transform.position = fireObject.transform.position;
-            StartCooking();
-        }
-        else
-        {
-            transform.position = startPosition;
-            Debug.Log("Ingredient returned to start position.");
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Fire"))
-        {
-            isOverFire = true;
-            isDragging = false;
-            fireObject = collision.gameObject;
-            Debug.Log("Meat is over fire!");
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Fire"))
-        {
-            isOverFire = false;
-            isDragging = false;
-            fireObject = null;
-            Debug.Log("Meat left the fire!");
-        }
-    }
-
-    private void StartCooking()
-    {
-        GetComponent<IngradientsCooking>().StartCooking();
-    }
+    protected abstract void OnMouseUp();
 }
