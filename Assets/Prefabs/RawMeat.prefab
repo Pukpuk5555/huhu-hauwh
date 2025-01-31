@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e295cfd86e65b4f8bc0b7b12b6bc25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireObject: {fileID: 0}
 --- !u!114 &404666051557706580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f92ace18de2513418e31aec465c6643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cookedPrefab: {fileID: 8244145319130350264, guid: 93c520540a70bd34db217dc4ab1f31d6, type: 3}
 --- !u!60 &1594852647412945593
 PolygonCollider2D:
   m_ObjectHideFlags: 0
