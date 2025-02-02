@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragNDrop : MonoBehaviour
+public abstract class DragNDrop : MonoBehaviour
 {
     protected Vector3 startPosition;
     protected bool isDragging = false;
