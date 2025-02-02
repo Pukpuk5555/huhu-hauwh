@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 962b7f62f45a58a47a3e3d5c2d6c6044, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,8 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb3059be6ada746438db267bf45da765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawMeatPrefab: {fileID: 7324374205885351897}
-  rawMeatSpawnPoint: {fileID: 0}
+  meatPilePos: {fileID: 8714938819669363163, guid: e98ada7c566497843a02b1f9ebe561dd, type: 3}
 --- !u!114 &404666051557706580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +143,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

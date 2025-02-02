@@ -190,8 +190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78fcda5448ab2b47acb362560d3a2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawMeatPrefab: {fileID: 0}
-  rawMeatPos: {fileID: 0}
+  rawMeatPrefab: {fileID: 7324374205885351897, guid: 7eb5ed391923d9d48834ece9cb59bf7e, type: 3}
+  rawMeatPos: {fileID: 5047994486197435509}
   meatLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  draggingMeat: {fileID: 0}
