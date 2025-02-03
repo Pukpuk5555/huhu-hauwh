@@ -5,7 +5,8 @@ using UnityEngine;
 public class RawMeatDragAndDrop : MonoBehaviour
 {
     private bool isDragging = false;
-    private bool isOverFire = false;
+    private bool isCooked = false;
+    private static bool isMeatOnFire = false;
     private GameObject fireObject;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject meatPilePos;
@@ -21,7 +22,15 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
     public void OnMouseDown()
     {
-        isDragging = true;
+        if(!isMeatOnFire)
+        {
+            isDragging = true;
+            Debug.Log("Meat picked up.");
+        }
+        else
+        {
+            Debug.Log("Cannot pick up meat while another one is cooking.");
+        }
     }
 
     private void OnMouseDrag()
@@ -40,26 +49,35 @@ public class RawMeatDragAndDrop : MonoBehaviour
         isDragging = false;
         spriteRenderer.sortingOrder = defaultLayer;
 
-        if (isOverFire && fireObject != null)
+        if(fireObject != null)
         {
-            Debug.Log("On Fire!!!!");
-            transform.position = fireObject.transform.position;
-            this.enabled = false;
-            StartCooking();
+            if (!isMeatOnFire)
+            {
+                isMeatOnFire = true;
+                transform.position = fireObject.transform.position;
+                this.enabled = false;
+                StartCooking();
+                Debug.Log("Meat place on Fire!!!!");
+            }
+            else
+            {
+                transform.position = meatPilePos.transform.position;
+                Debug.Log("Cannot place meat on fire. Returning to pile.");
+            }
         }
         else
         {
             transform.position = meatPilePos.transform.position;
-            Debug.Log("Meat dropped.");
+            Debug.Log("Meat dropped back to pile.");
+
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Fire"))
         {
-            isOverFire = true;
+            //isOverFire = true;
             fireObject = collision.gameObject;
             Debug.Log("Meat is over fire!");
         }
@@ -69,7 +87,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
     {
         if (collision.CompareTag("Fire"))
         {
-            isOverFire = false;
+            //isOverFire = false;
             fireObject = null;
             Debug.Log("Meat left the fire!");
         }
@@ -78,5 +96,13 @@ public class RawMeatDragAndDrop : MonoBehaviour
     private void StartCooking()
     {
         GetComponent<IngradientsCooking>().StartCooking();
+        Invoke(nameof(FinishCooking), 7f);
+    }
+
+    private void FinishCooking()
+    {
+        isCooked = true;
+        isMeatOnFire = false;
+        Debug.Log("Meat is cooked and can be picked up.");
     }
 }
