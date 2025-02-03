@@ -22,7 +22,11 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if(!isMeatOnFire)
+        if(isCooked)
+        {
+            isDragging = true;
+        }
+        else if(!isMeatOnFire)
         {
             isDragging = true;
             Debug.Log("Meat picked up.");
@@ -49,27 +53,23 @@ public class RawMeatDragAndDrop : MonoBehaviour
         isDragging = false;
         spriteRenderer.sortingOrder = defaultLayer;
 
-        if(fireObject != null)
+        if(!isCooked && fireObject != null && !isMeatOnFire)
         {
-            if (!isMeatOnFire)
-            {
-                isMeatOnFire = true;
-                transform.position = fireObject.transform.position;
-                this.enabled = false;
-                StartCooking();
-                Debug.Log("Meat place on Fire!!!!");
-            }
-            else
-            {
-                transform.position = meatPilePos.transform.position;
-                Debug.Log("Cannot place meat on fire. Returning to pile.");
-            }
+            isMeatOnFire = true;
+            transform.position = fireObject.transform.position;
+            Debug.Log("Meat is place on fire.");
+            StartCooking();
+        }
+        else if(isCooked)
+        {
+            isMeatOnFire = false;
+            transform.position = meatPilePos.transform.position;
+            Debug.Log("Cannot place meat while another one is cooking.");
         }
         else
         {
             transform.position = meatPilePos.transform.position;
-            Debug.Log("Meat dropped back to pile.");
-
+            Debug.Log("Meat back to meat pile.");
         }
     }
 
@@ -77,7 +77,6 @@ public class RawMeatDragAndDrop : MonoBehaviour
     {
         if (collision.CompareTag("Fire"))
         {
-            //isOverFire = true;
             fireObject = collision.gameObject;
             Debug.Log("Meat is over fire!");
         }
@@ -87,7 +86,6 @@ public class RawMeatDragAndDrop : MonoBehaviour
     {
         if (collision.CompareTag("Fire"))
         {
-            //isOverFire = false;
             fireObject = null;
             Debug.Log("Meat left the fire!");
         }
