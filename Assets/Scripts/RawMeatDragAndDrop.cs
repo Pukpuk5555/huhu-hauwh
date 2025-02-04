@@ -22,6 +22,12 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if(isMeatOnFire)
+        {
+            Debug.Log("Cannot pick up meat while another one is cooking.");
+            return;
+        }
+
         if(isCooked)
         {
             isDragging = true;
