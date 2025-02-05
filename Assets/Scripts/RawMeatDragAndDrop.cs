@@ -12,6 +12,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
     [SerializeField] private GameObject meatPilePos;
     private IngradientsCooking cookingScript;
 
+    private static bool isFireOccupied = false;
+
     private int defaultLayer = 5;
     private int pickedUpLayer = 6;
 
@@ -50,27 +52,35 @@ public class RawMeatDragAndDrop : MonoBehaviour
         isDragging = false;
         spriteRenderer.sortingOrder = defaultLayer;
 
-        if(!isCooked && isMeatOnFire)
+        if(isFireOccupied && !isCooked && !isMeatOnFire)
         {
-            Debug.Log("Meat is cooking, cannot move.");
+            Debug.Log("Cannot place new meat while another one is cooking.");
+            transform.position = meatPilePos.transform.position;
             return;
         }
 
         if(!isCooked && fireObject != null && !isMeatOnFire)
         {
             isMeatOnFire = true;
+            isFireOccupied = true;
             transform.position = fireObject.transform.position;
             Debug.Log("Meat is place on fire.");
             StartCooking();
         }
-        else if(isCooked)
+        else if(isMeatOnFire & !isCooked)
         {
             isMeatOnFire = false;
+            isFireOccupied = false;
+            Debug.Log("Meat removed from fire, stops cooking.");
+        }
+        else if(isCooked)
+        {
+            Debug.Log("Cooked meat can be placed anywhere.");
         }
         else
         {
             transform.position = meatPilePos.transform.position;
-            Debug.Log("Cannot place meat while another one is cooking.");
+            Debug.Log("Raw meat returned to pile.");
         }
     }
 
@@ -109,6 +119,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
     {
         isCooked = true;
         isMeatOnFire = false;
+        isFireOccupied = false;
         Debug.Log("Meat is cooked and can be picked up.");
     }
 }
