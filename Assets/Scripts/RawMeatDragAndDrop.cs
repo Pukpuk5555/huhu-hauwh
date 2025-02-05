@@ -6,7 +6,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
 {
     private bool isDragging = false;
     private bool isCooked = false;
-    private static bool isMeatOnFire = false;
+    private bool isMeatOnFire = false;
     private GameObject fireObject;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject meatPilePos;
@@ -31,6 +31,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
         if(isCooked)
         {
             isDragging = true;
+            spriteRenderer.sortingOrder = pickedUpLayer;
         }
         else if(!isMeatOnFire)
         {

@@ -38,7 +38,7 @@ public class MeatOnLeaf : MonoBehaviour
 
         if(hit.collider != null && hit.collider.gameObject == gameObject)
         {
-            draggingMeat = Instantiate(rawMeatPrefab, rawMeatPos.position, Quaternion.identity);
+            //draggingMeat = Instantiate(rawMeatPrefab, rawMeatPos.position, Quaternion.identity);
             draggingMeat.GetComponent<SpriteRenderer>().sortingOrder = 6;
             draggingMeat.GetComponent<RawMeatDragAndDrop>().OnMouseDown();
         }
