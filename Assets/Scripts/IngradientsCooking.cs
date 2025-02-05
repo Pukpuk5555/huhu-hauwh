@@ -37,4 +37,13 @@ public class IngradientsCooking : MonoBehaviour
     {
         
     }
+
+    public virtual void StopCooking()
+    {
+        if(isCooking)
+        {
+            isCooking = false;
+            Debug.Log("Cooking processs stopped.");
+        }
+    }
 }

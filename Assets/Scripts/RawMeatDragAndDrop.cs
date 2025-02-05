@@ -10,6 +10,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
     private GameObject fireObject;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject meatPilePos;
+    private IngradientsCooking cookingScript;
 
     private int defaultLayer = 5;
     private int pickedUpLayer = 6;
@@ -18,6 +19,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = defaultLayer;
+        cookingScript = GetComponent<IngradientsCooking>();
     }
 
     public void OnMouseDown()
@@ -28,20 +30,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
             return;
         }
 
-        if(isCooked)
-        {
-            isDragging = true;
-            spriteRenderer.sortingOrder = pickedUpLayer;
-        }
-        else if(!isMeatOnFire)
-        {
-            isDragging = true;
-            Debug.Log("Meat picked up.");
-        }
-        else
-        {
-            Debug.Log("Cannot pick up meat while another one is cooking.");
-        }
+        isDragging = true;
+        spriteRenderer.sortingOrder = pickedUpLayer;
     }
 
     private void OnMouseDrag()
@@ -60,6 +50,12 @@ public class RawMeatDragAndDrop : MonoBehaviour
         isDragging = false;
         spriteRenderer.sortingOrder = defaultLayer;
 
+        if(!isCooked && isMeatOnFire)
+        {
+            Debug.Log("Meat is cooking, cannot move.");
+            return;
+        }
+
         if(!isCooked && fireObject != null && !isMeatOnFire)
         {
             isMeatOnFire = true;
@@ -70,13 +66,11 @@ public class RawMeatDragAndDrop : MonoBehaviour
         else if(isCooked)
         {
             isMeatOnFire = false;
-            transform.position = meatPilePos.transform.position;
-            Debug.Log("Cannot place meat while another one is cooking.");
         }
         else
         {
             transform.position = meatPilePos.transform.position;
-            Debug.Log("Meat back to meat pile.");
+            Debug.Log("Cannot place meat while another one is cooking.");
         }
     }
 
@@ -95,12 +89,19 @@ public class RawMeatDragAndDrop : MonoBehaviour
         {
             fireObject = null;
             Debug.Log("Meat left the fire!");
+
+            if(isMeatOnFire && !isCooked)
+            {
+                isMeatOnFire = false;
+                cookingScript.StopCooking();
+                Debug.Log("Meat remove forem fire before it was fully cooked.");
+            }
         }
     }
 
     private void StartCooking()
     {
-        GetComponent<IngradientsCooking>().StartCooking();
+        cookingScript.StartCooking();
         Invoke(nameof(FinishCooking), 7f);
     }
 
