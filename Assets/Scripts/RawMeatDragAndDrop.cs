@@ -105,6 +105,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
                 isMeatOnFire = false;
                 cookingScript.StopCooking();
                 Debug.Log("Meat remove forem fire before it was fully cooked.");
+                CheckFireOccupied();
             }
         }
     }
@@ -121,5 +122,21 @@ public class RawMeatDragAndDrop : MonoBehaviour
         isMeatOnFire = false;
         isFireOccupied = false;
         Debug.Log("Meat is cooked and can be picked up.");
+    }
+
+    private void CheckFireOccupied()
+    {
+        GameObject[] allMeats = GameObject.FindGameObjectsWithTag("Meat");
+        isFireOccupied = false;
+
+        foreach(GameObject meat in allMeats)
+        {
+            RawMeatDragAndDrop meatScript = meat.GetComponent<RawMeatDragAndDrop>();
+            if(meatScript != null && meatScript.isMeatOnFire)
+            {
+                isFireOccupied = true;
+                break;
+            }
+        }
     }
 }
