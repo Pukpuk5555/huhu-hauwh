@@ -139,4 +139,9 @@ public class RawMeatDragAndDrop : MonoBehaviour
             }
         }
     }
+
+    public bool IsCooked()
+    {
+        return isCooked;
+    }
 }
