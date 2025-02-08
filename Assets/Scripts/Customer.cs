@@ -6,9 +6,9 @@ public class Customer : MonoBehaviour
 {
     public void ServeMeat(GameObject meat)
     {
-        RawMeatDragAndDrop meatScript = meat.GetComponent<RawMeatDragAndDrop>();
+        CookedMeatDragAndDrop meatScript = meat.GetComponent<CookedMeatDragAndDrop>();
 
-        if(meatScript != null && meatScript.IsCooked())
+        if(meatScript != null)
         {
             Debug.Log("Monkey got meat! They satified.");
             Destroy(meat);
