@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum IngredientState
+{
+    Raw,
+    Cooked,
+    OverCooked,
+    Burned
+}
+
 public abstract class IngredientsCooking : MonoBehaviour
 {
     protected SpriteRenderer spriteRenderer;

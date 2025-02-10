@@ -13,17 +13,30 @@ public class Customer : MonoBehaviour
 
     public void ServeMeat(GameObject meat)
     {
-        CookedMeatDragAndDrop meatScript = meat.GetComponent<CookedMeatDragAndDrop>();
+        CookedMeat meatScript = meat.GetComponent<CookedMeat>();
 
         if(meatScript != null)
         {
-            Debug.Log("Monkey got meat! They satified.");
-            Destroy(meat);
-            monkeyDeliciousAudio.Play();
-        }
-        else
-        {
-            Debug.Log("Monkey does not get meat! They is angry");
+            switch (meatScript.curMeatState)
+            {
+                case IngredientState.Cooked:
+                    Debug.Log("Monkey got cooked meat. Monkey's satisfied.");
+                    Destroy(meat);
+                    monkeyDeliciousAudio.Play();
+                    break;
+                case IngredientState.OverCooked:
+                    Debug.Log("Monkey got overcooked meat. Monkey's neutral.");
+                    Destroy(meat);
+                    break;
+                case IngredientState.Burned:
+                    Debug.Log("Monkey got BURN MEAT! Monkey's ANGRY!!!");
+                    Destroy(meat);
+                    break;
+
+                default:
+                    Debug.Log("state not match.");
+                    break;
+            }
         }
     }
 }

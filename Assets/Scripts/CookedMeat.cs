@@ -11,6 +11,8 @@ public class CookedMeat : MonoBehaviour
     private float timer = 0f;
     private float meatBurnTime = 5f;
 
+    public IngredientState curMeatState = IngredientState.Cooked;
+
     private bool isBurning = false; 
     private bool isBurned = false; //is meat burned
 
@@ -27,6 +29,15 @@ public class CookedMeat : MonoBehaviour
         {
             Debug.Log("Cooked Meat is on fire.");
             StartCoroutine(MeatBurn());
+        }
+
+        if (collision.CompareTag("Monkey"))
+        {
+            Customer customerScript = collision.GetComponent<Customer>();
+            if (customerScript != null)
+            {
+                customerScript.ServeMeat(gameObject);
+            }
         }
     }
 
@@ -53,11 +64,15 @@ public class CookedMeat : MonoBehaviour
             float burnProgress = Mathf.Clamp01(timer / meatBurnTime);
             spriteRenderer.color = Color.Lerp(meatColor, burnMeatColor, burnProgress);
 
-            if(timer >= meatBurnTime)
+            curMeatState = IngredientState.OverCooked;
+            Debug.Log("OverCooked Meat!");
+
+            if (timer >= meatBurnTime)
             {
+                curMeatState = IngredientState.Burned;
                 isBurned = true;
                 isBurning = false;
-                Debug.Log("OverCooked Meat!");
+                Debug.Log("MEAT HAS BURNED!");
             }
 
             yield return null;

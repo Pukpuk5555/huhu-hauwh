@@ -18,16 +18,4 @@ public class CookedMeatDragAndDrop : DragNDrop
     {
 
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Monkey"))
-        {
-            Customer customerScript = collision.GetComponent<Customer>();
-            if(customerScript != null)
-            {
-                customerScript.ServeMeat(gameObject);
-            }
-        }
-    }
 }
