@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
+    private AudioSource monkeyDeliciousAudio;
+
+    private void Start()
+    {
+        monkeyDeliciousAudio = GetComponent<AudioSource>();
+    }
+
     public void ServeMeat(GameObject meat)
     {
         CookedMeatDragAndDrop meatScript = meat.GetComponent<CookedMeatDragAndDrop>();
@@ -12,6 +19,7 @@ public class Customer : MonoBehaviour
         {
             Debug.Log("Monkey got meat! They satified.");
             Destroy(meat);
+            monkeyDeliciousAudio.Play();
         }
         else
         {
