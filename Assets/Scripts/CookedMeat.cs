@@ -11,7 +11,7 @@ public class CookedMeat : MonoBehaviour
     private float timer = 0f;
     private float meatBurnTime = 5f;
 
-    private bool isOnFire = false; //is meat on fire
+    private bool isBurning = false; 
     private bool isBurned = false; //is meat burned
 
     // Start is called before the first frame update
@@ -21,18 +21,12 @@ public class CookedMeat : MonoBehaviour
         meatColor = spriteRenderer.color;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Invoke(nameof(MeatBurn), 2f);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Fire"))
         {
-            isOnFire = true;
             Debug.Log("Cooked Meat is on fire.");
+            StartCoroutine(MeatBurn());
         }
     }
 
@@ -40,16 +34,19 @@ public class CookedMeat : MonoBehaviour
     {
         if(collision.CompareTag("Fire"))
         {
-            isOnFire = false;
             Debug.Log("Cooked Meat removed from fire.");
+            StopCoroutine(MeatBurn());
         }
     }
 
-    public void MeatBurn()
+    public IEnumerator MeatBurn()
     {
-        Debug.Log("Meat is burning.");
+        Debug.Log("Meat start burning in 2 seconds...");
+        yield return new WaitForSeconds(2f);
 
-        if(isOnFire && !isBurned)
+        isBurning = true;
+
+        while (isBurning && !isBurned)
         {
             timer += Time.deltaTime;
 
@@ -59,8 +56,11 @@ public class CookedMeat : MonoBehaviour
             if(timer >= meatBurnTime)
             {
                 isBurned = true;
-                Debug.Log("Over Cooked Meat!");
+                isBurning = false;
+                Debug.Log("OverCooked Meat!");
             }
+
+            yield return null;
         }
     }
 }
