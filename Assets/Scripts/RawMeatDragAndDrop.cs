@@ -120,8 +120,9 @@ public class RawMeatDragAndDrop : MonoBehaviour
     {
         cookingScript.StartCooking();
         Invoke(nameof(FinishCooking), 7f);
+
         if (meatGrillingAudio != null)
-            meatGrillingAudio.Play();
+            meatGrillingAudio.Play(); //Play grill meat audio
     }
 
     private void FinishCooking()
