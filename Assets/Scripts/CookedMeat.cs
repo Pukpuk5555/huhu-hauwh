@@ -9,7 +9,10 @@ public class CookedMeat : MonoBehaviour
     private Color meatColor;
     private Color burnMeatColor = new Color(0.6f, 0.3f, 0.2f);
     private float timer = 0f;
-    private float meatBurnTime = 12f;
+    private float meatBurnTime = 5f;
+
+    private bool isOnFire = false; //is meat on fire
+    private bool isBurned = false; //is meat burned
 
     // Start is called before the first frame update
     void Start()
@@ -21,21 +24,43 @@ public class CookedMeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Invoke(nameof(MeatBurn), 2f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Fire"))
         {
-            Invoke(nameof(MeatBurn), 2f);
+            isOnFire = true;
+            Debug.Log("Cooked Meat is on fire.");
         }
     }
 
-    private void MeatBurn()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        timer += Time.deltaTime;
-        float meatBurnProgress = Mathf.Clamp01(timer / meatBurnTime);
-        spriteRenderer.color = Color.Lerp(meatColor, burnMeatColor, meatBurnProgress);
+        if(collision.CompareTag("Fire"))
+        {
+            isOnFire = false;
+            Debug.Log("Cooked Meat removed from fire.");
+        }
+    }
+
+    public void MeatBurn()
+    {
+        Debug.Log("Meat is burning.");
+
+        if(isOnFire && !isBurned)
+        {
+            timer += Time.deltaTime;
+
+            float burnProgress = Mathf.Clamp01(timer / meatBurnTime);
+            spriteRenderer.color = Color.Lerp(meatColor, burnMeatColor, burnProgress);
+
+            if(timer >= meatBurnTime)
+            {
+                isBurned = true;
+                Debug.Log("Over Cooked Meat!");
+            }
+        }
     }
 }
