@@ -17,11 +17,15 @@ public class RawMeatDragAndDrop : MonoBehaviour
     private int defaultLayer = 5;
     private int pickedUpLayer = 6;
 
+    [SerializeField] private AudioSource pickupMeatAudio;
+    [SerializeField] private AudioSource meatGrillingAudio;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = defaultLayer;
         cookingScript = GetComponent<IngradientsCooking>();
+        pickupMeatAudio = GetComponent<AudioSource>();
     }
 
     public void OnMouseDown()
@@ -34,6 +38,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
         isDragging = true;
         spriteRenderer.sortingOrder = pickedUpLayer;
+        if (pickupMeatAudio != null)
+            pickupMeatAudio.Play();
     }
 
     private void OnMouseDrag()
@@ -114,6 +120,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
     {
         cookingScript.StartCooking();
         Invoke(nameof(FinishCooking), 7f);
+        if (meatGrillingAudio != null)
+            meatGrillingAudio.Play();
     }
 
     private void FinishCooking()
