@@ -7,7 +7,7 @@ public class CookedMeat : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Color meatColor;
-    private Color burnMeatColor = new Color(0.6f, 0.3f, 0.2f);
+    private Color burnMeatColor = new Color(0.4f, 0.2f, 0.1f);
     private float timer = 0f;
     private float meatBurnTime = 5f;
 
