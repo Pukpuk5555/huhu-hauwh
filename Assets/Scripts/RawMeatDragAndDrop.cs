@@ -10,7 +10,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
     private GameObject fireObject;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject meatPilePos;
-    private IngradientsCooking cookingScript;
+    private IngredientsCooking cookingScript;
 
     private static bool isFireOccupied = false;
 
@@ -24,7 +24,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = defaultLayer;
-        cookingScript = GetComponent<IngradientsCooking>();
+        cookingScript = GetComponent<IngredientsCooking>();
         pickupMeatAudio = GetComponent<AudioSource>();
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IngradientsCooking : MonoBehaviour
+public abstract class IngredientsCooking : MonoBehaviour
 {
     protected SpriteRenderer spriteRenderer;
 
@@ -18,11 +18,6 @@ public class IngradientsCooking : MonoBehaviour
         rawColor = spriteRenderer.color;
     }
 
-    protected virtual void Update()
-    {
-        OnCooking();
-    }
-
     public virtual void StartCooking()
     {
         if(!isCooking)
@@ -33,10 +28,7 @@ public class IngradientsCooking : MonoBehaviour
         }
     }
 
-    public virtual void OnCooking()
-    {
-        
-    }
+    public abstract void OnCooking(); //override in child class
 
     public virtual void StopCooking()
     {

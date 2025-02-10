@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeatCooking : IngradientsCooking
+public class MeatCooking : IngredientsCooking
 {
     private float cookingTime = 7f;
 
     protected override void Start()
     {
-        //cookedSprite = Resources.Load<Sprite>("Sprites/CookedMeat");
         base.Start();
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
         OnCooking();
     }
 
@@ -27,8 +25,6 @@ public class MeatCooking : IngradientsCooking
 
     public override void OnCooking()
     {
-        base.OnCooking();
-
         if(isCooking)
         {
             cookingTimer += Time.deltaTime;
