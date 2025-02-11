@@ -18,6 +18,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
     private int defaultLayer = 5;
     private int pickedUpLayer = 6;
 
+    private CursorManager cursorManager;
+
     //[SerializeField] private Image meatProgressBar;
 
     [SerializeField] private AudioSource pickupMeatAudio;
@@ -36,6 +38,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
         cookingScript = GetComponent<IngredientsCooking>();
         pickupMeatAudio = GetComponent<AudioSource>();
 
+        cursorManager = FindObjectOfType<CursorManager>();
+
         /*meatProgressBar.enabled = false;
         if (meatProgressBar != null)
         {
@@ -45,6 +49,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
     public void OnMouseDown()
     {
+        cursorManager.SetHandCursor();
+
         if(isMeatOnFire)
         {
             Debug.Log("Cannot pick up meat while another one is cooking.");
@@ -59,6 +65,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        cursorManager.SetHandCursor();
+
         if (isDragging)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -70,6 +78,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
     private void OnMouseUp()
     {
+        cursorManager.SetHandCursor();
+
         isDragging = false;
         spriteRenderer.sortingOrder = defaultLayer;
 
