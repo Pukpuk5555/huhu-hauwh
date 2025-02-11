@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class RawMeatDragAndDrop : MonoBehaviour
 {
+    private Vector3 offset;
     private bool isDragging = false;
-    private bool isCooked = false;
-    private bool isMeatOnFire = false;
-    private GameObject fireObject;
-    private SpriteRenderer spriteRenderer;
-    [SerializeField] private GameObject meatPilePos;
     private IngredientsCooking cookingScript;
+    private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private Transform originalPos;
     private static bool isFireOccupied = false;
 
     private int defaultLayer = 5;
@@ -20,16 +18,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
     private CursorManager cursorManager;
 
-    //[SerializeField] private Image meatProgressBar;
-
     [SerializeField] private AudioSource pickupMeatAudio;
-    [SerializeField] private AudioSource meatGrillingAudio;
-
-
-    private void Awake()
-    {
-        //meatProgressBar = GameObject.Find("Slider").GetComponent<Image>();
-    }
 
     private void Start()
     {
@@ -37,21 +26,14 @@ public class RawMeatDragAndDrop : MonoBehaviour
         spriteRenderer.sortingOrder = defaultLayer;
         cookingScript = GetComponent<IngredientsCooking>();
         pickupMeatAudio = GetComponent<AudioSource>();
-
         cursorManager = FindObjectOfType<CursorManager>();
-
-        /*meatProgressBar.enabled = false;
-        if (meatProgressBar != null)
-        {
-            meatProgressBar.fillAmount = 0;
-        }*/
     }
 
     public void OnMouseDown()
     {
         cursorManager.SetHandCursor();
 
-        if(isMeatOnFire)
+        if(isFireOccupied && !cookingScript.IsCooked())
         {
             Debug.Log("Cannot pick up meat while another one is cooking.");
             return;
@@ -59,6 +41,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
         isDragging = true;
         spriteRenderer.sortingOrder = pickedUpLayer;
+
         if (pickupMeatAudio != null)
             pickupMeatAudio.Play();
     }
@@ -73,7 +56,6 @@ public class RawMeatDragAndDrop : MonoBehaviour
             mousePosition.z = 0;
             transform.position = mousePosition;
         }
-        
     }
 
     private void OnMouseUp()
@@ -83,36 +65,27 @@ public class RawMeatDragAndDrop : MonoBehaviour
         isDragging = false;
         spriteRenderer.sortingOrder = defaultLayer;
 
-        if(isFireOccupied && !isCooked && !isMeatOnFire)
+        if(fireObject != null && !cookingScript.IsCooking())
         {
-            Debug.Log("Cannot place new meat while another one is cooking.");
-            transform.position = meatPilePos.transform.position;
-            return;
-        }
-
-        if(!isCooked && fireObject != null && !isMeatOnFire)
-        {
-            isMeatOnFire = true;
-            isFireOccupied = true;
             transform.position = fireObject.transform.position;
-            Debug.Log("Meat is place on fire.");
-            StartCooking();
+            cookingScript.StartCooking();
+            isFireOccupied = true;
         }
-        else if(isMeatOnFire & !isCooked)
+        else if(cookingScript.IsCooked())
         {
-            isMeatOnFire = false;
-            isFireOccupied = false;
-            Debug.Log("Meat removed from fire, stops cooking.");
-        }
-        else if(isCooked)
-        {
-            Debug.Log("Cooked meat can be placed anywhere.");
+            Debug.Log($"{gameObject.name} can remove from bonfire.");
         }
         else
         {
             transform.position = meatPilePos.transform.position;
-            Debug.Log("Raw meat returned to pile.");
+            Debug.Log($"{gameObject.name} return to pile.");
         }
+    }
+
+    private Vector3 GetCookingAreaPosition()
+    {
+        Collider2D hitCollider = Physics2D.OverlapPoint(transform.position);
+        return hitCollider != null ? hitCollider.transform.position : transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -120,7 +93,7 @@ public class RawMeatDragAndDrop : MonoBehaviour
         if (collision.CompareTag("Fire"))
         {
             fireObject = collision.gameObject;
-            Debug.Log("Meat is over fire!");
+            Debug.Log($"{gameObject.name} is over fire!");
         }
     }
 
@@ -128,56 +101,13 @@ public class RawMeatDragAndDrop : MonoBehaviour
     {
         if (collision.CompareTag("Fire"))
         {
-            fireObject = null;
-            Debug.Log("Meat left the fire!");
+            Debug.Log($"{gameObject.name} left the fire!");
 
-            if(isMeatOnFire && !isCooked)
+            if(ingredientState = IngredientState.Cooking)
             {
-                isMeatOnFire = false;
                 cookingScript.StopCooking();
-                Debug.Log("Meat remove forem fire before it was fully cooked.");
-                CheckFireOccupied();
+                isFireOccupied = false;
             }
         }
-    }
-
-    private void StartCooking()
-    {
-        //meatProgressBar.enabled = true;
-        cookingScript.StartCooking();
-        Invoke(nameof(FinishCooking), 7f);
-        //meatProgressBar.fillAmount = 1;
-
-        if (meatGrillingAudio != null)
-            meatGrillingAudio.Play(); //Play grill meat audio
-    }
-
-    private void FinishCooking()
-    {
-        isCooked = true;
-        isMeatOnFire = false;
-        isFireOccupied = false;
-        Debug.Log("Meat is cooked and can be picked up.");
-    }
-
-    private void CheckFireOccupied()
-    {
-        GameObject[] allMeats = GameObject.FindGameObjectsWithTag("Meat");
-        isFireOccupied = false;
-
-        foreach(GameObject meat in allMeats)
-        {
-            RawMeatDragAndDrop meatScript = meat.GetComponent<RawMeatDragAndDrop>();
-            if(meatScript != null && meatScript.isMeatOnFire)
-            {
-                isFireOccupied = true;
-                break;
-            }
-        }
-    }
-
-    public bool IsCooked()
-    {
-        return isCooked;
     }
 }

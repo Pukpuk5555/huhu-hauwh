@@ -5,6 +5,7 @@ using UnityEngine;
 public enum IngredientState
 {
     Raw,
+    Cooking,
     Cooked,
     OverCooked,
     Burned
@@ -14,11 +15,13 @@ public abstract class IngredientsCooking : MonoBehaviour
 {
     protected SpriteRenderer spriteRenderer;
 
-    [SerializeField] protected GameObject cookedPrefab;
+    [SerializeField] protected Sprite cookedMeatSprite;
     protected Color rawColor;
     protected Color cookedColor = new Color(0.6f, 0.3f, 0.2f);
     protected float cookingTimer = 0f;
     protected bool isCooking = false;
+
+    protected IngredientState ingredientState = IngredientState.Raw;
 
     protected virtual void Start()
     {
@@ -28,22 +31,21 @@ public abstract class IngredientsCooking : MonoBehaviour
 
     public virtual void StartCooking()
     {
-        if(!isCooking)
+        if (!isCooking)
         {
             isCooking = true;
+            ingredientState = IngredientState.Cooking;
             cookingTimer = 0f;
-            Debug.Log("Start Cooking");
+            Debug.Log("Start Cooking.");
         }
     }
-
-    public abstract void OnCooking(); //override in child class
 
     public virtual void StopCooking()
     {
         if(isCooking)
         {
             isCooking = false;
-            Debug.Log("Cooking processs stopped.");
+            Debug.Log("Cooking stopped.");
         }
     }
 }

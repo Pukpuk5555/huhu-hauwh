@@ -28,7 +28,7 @@ public class CookedMeat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Fire"))
+        if(collision.CompareTag("CookingArea"))
         {
             Debug.Log("Cooked Meat is on fire.");
             StartCoroutine(MeatBurn());
@@ -46,7 +46,7 @@ public class CookedMeat : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("Fire"))
+        if(collision.CompareTag("CookingArea"))
         {
             Debug.Log("Cooked Meat removed from fire.");
             StopCoroutine(MeatBurn());
