@@ -17,16 +17,13 @@ public class CookedMeat : MonoBehaviour
     private bool isBurning = false; 
     private bool isBurned = false; //is meat burned
 
-    [SerializeField] private Slider meatProgessBar;
+    [SerializeField] private GameObject meatProgressBar;
 
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         meatColor = spriteRenderer.color;
-
-        if (meatProgessBar != null)
-            meatProgessBar.value = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

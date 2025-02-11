@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RawMeatDragAndDrop : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class RawMeatDragAndDrop : MonoBehaviour
     private int defaultLayer = 5;
     private int pickedUpLayer = 6;
 
+    [SerializeField] private Image meatProgressBar;
+
     [SerializeField] private AudioSource pickupMeatAudio;
     [SerializeField] private AudioSource meatGrillingAudio;
 
@@ -26,6 +29,12 @@ public class RawMeatDragAndDrop : MonoBehaviour
         spriteRenderer.sortingOrder = defaultLayer;
         cookingScript = GetComponent<IngredientsCooking>();
         pickupMeatAudio = GetComponent<AudioSource>();
+
+        meatProgressBar.enabled = false;
+        if (meatProgressBar != null)
+        {
+            meatProgressBar.fillAmount = 0;
+        }
     }
 
     public void OnMouseDown()
@@ -118,8 +127,10 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
     private void StartCooking()
     {
+        meatProgressBar.enabled = true;
         cookingScript.StartCooking();
         Invoke(nameof(FinishCooking), 7f);
+        meatProgressBar.fillAmount = 1;
 
         if (meatGrillingAudio != null)
             meatGrillingAudio.Play(); //Play grill meat audio
