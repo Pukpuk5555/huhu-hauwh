@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    private AudioSource monkeyDeliciousAudio;
+    [SerializeField] private AudioSource monkeyDeliciousAudio;
+    [SerializeField] private AudioSource monkeyNeutralAudio;
+    [SerializeField] private AudioSource monkeyAngryAudio;
 
     private void Start()
     {
@@ -27,10 +29,12 @@ public class Customer : MonoBehaviour
                 case IngredientState.OverCooked:
                     Debug.Log("Monkey got overcooked meat. Monkey's neutral.");
                     Destroy(meat);
+                    monkeyNeutralAudio.Play();
                     break;
                 case IngredientState.Burned:
                     Debug.Log("Monkey got BURN MEAT! Monkey's ANGRY!!!");
                     Destroy(meat);
+                    monkeyAngryAudio.Play();
                     break;
 
                 default:
