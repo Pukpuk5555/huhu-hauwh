@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CookedMeat : MonoBehaviour
 {
@@ -16,11 +17,16 @@ public class CookedMeat : MonoBehaviour
     private bool isBurning = false; 
     private bool isBurned = false; //is meat burned
 
+    [SerializeField] private Slider meatProgessBar;
+
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         meatColor = spriteRenderer.color;
+
+        if (meatProgessBar != null)
+            meatProgessBar.value = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
