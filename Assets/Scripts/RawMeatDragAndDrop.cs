@@ -18,10 +18,16 @@ public class RawMeatDragAndDrop : MonoBehaviour
     private int defaultLayer = 5;
     private int pickedUpLayer = 6;
 
-    [SerializeField] private Image meatProgressBar;
+    //[SerializeField] private Image meatProgressBar;
 
     [SerializeField] private AudioSource pickupMeatAudio;
     [SerializeField] private AudioSource meatGrillingAudio;
+
+
+    private void Awake()
+    {
+        //meatProgressBar = GameObject.Find("Slider").GetComponent<Image>();
+    }
 
     private void Start()
     {
@@ -30,11 +36,11 @@ public class RawMeatDragAndDrop : MonoBehaviour
         cookingScript = GetComponent<IngredientsCooking>();
         pickupMeatAudio = GetComponent<AudioSource>();
 
-        meatProgressBar.enabled = false;
+        /*meatProgressBar.enabled = false;
         if (meatProgressBar != null)
         {
             meatProgressBar.fillAmount = 0;
-        }
+        }*/
     }
 
     public void OnMouseDown()
@@ -127,10 +133,10 @@ public class RawMeatDragAndDrop : MonoBehaviour
 
     private void StartCooking()
     {
-        meatProgressBar.enabled = true;
+        //meatProgressBar.enabled = true;
         cookingScript.StartCooking();
         Invoke(nameof(FinishCooking), 7f);
-        meatProgressBar.fillAmount = 1;
+        //meatProgressBar.fillAmount = 1;
 
         if (meatGrillingAudio != null)
             meatGrillingAudio.Play(); //Play grill meat audio
