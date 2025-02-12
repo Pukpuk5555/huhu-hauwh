@@ -23,6 +23,8 @@ public class CookingMeat : IngredientsCooking
         if(!isCooking)
         {
             base.StartCooking();
+            if (grillAudio != null)
+                grillAudio.Play();
             cookingCoroutine = StartCoroutine(CookMeat());
         }
     }
@@ -36,17 +38,15 @@ public class CookingMeat : IngredientsCooking
             Debug.Log("Cooking stopped manually.");
         }
         base.StopCooking();
-        grillAudio.Stop();
     }
 
     private IEnumerator CookMeat()
     {
         float elapsedTime = 0f;
         Debug.Log("Meat is starting to cook...");
-        grillAudio.Play();
 
         // Cooking phase
-        while(elapsedTime < timeToCook)
+        while (elapsedTime < timeToCook)
         {
             Debug.Log("Meat is cooking.");
             spriteRenderer.color = Color.Lerp(rawColor, cookedColor,
