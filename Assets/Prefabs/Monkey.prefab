@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8727491133186766913}
   - component: {fileID: -6227510668092964266}
   - component: {fileID: -6836528995610425834}
-  - component: {fileID: 2009412690170408936}
   - component: {fileID: 7207606466924539839}
   - component: {fileID: -1300330151977475543}
   - component: {fileID: -1198894338897674902}
@@ -238,21 +237,6 @@ PolygonCollider2D:
       - {x: 0.09375, y: -1.5}
       - {x: 0.125, y: -1.5}
   m_UseDelaunayMesh: 0
---- !u!114 &2009412690170408936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5973852320913458356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9cddf91331e74e4295bffa27b4bd944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monkeyDeliciousAudio: {fileID: 7207606466924539839}
-  monkeyNeutralAudio: {fileID: -1300330151977475543}
-  monkeyAngryAudio: {fileID: -1198894338897674902}
 --- !u!82 &7207606466924539839
 AudioSource:
   m_ObjectHideFlags: 0

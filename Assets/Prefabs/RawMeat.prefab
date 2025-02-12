@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5207442007003891361}
   - component: {fileID: 665882878093300802}
-  - component: {fileID: 3722592512247516992}
-  - component: {fileID: 404666051557706580}
   - component: {fileID: 1594852647412945593}
   - component: {fileID: 440137243574750849}
   - component: {fileID: -3714889660428196563}
   - component: {fileID: -5650528334393827380}
+  - component: {fileID: 9082490686164239520}
   m_Layer: 0
   m_Name: RawMeat
   m_TagString: Meat
@@ -90,34 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3722592512247516992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7324374205885351897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb3059be6ada746438db267bf45da765, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meatPilePos: {fileID: 8714938819669363163, guid: e98ada7c566497843a02b1f9ebe561dd, type: 3}
-  pickupMeatAudio: {fileID: -3714889660428196563}
-  meatGrillingAudio: {fileID: -5650528334393827380}
---- !u!114 &404666051557706580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7324374205885351897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f92ace18de2513418e31aec465c6643, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cookedPrefab: {fileID: 8244145319130350264, guid: 93c520540a70bd34db217dc4ab1f31d6, type: 3}
 --- !u!60 &1594852647412945593
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -405,3 +376,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9082490686164239520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324374205885351897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139138fa514797a4a8bba776f90a68f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cookedMeatSprite: {fileID: 21300000, guid: 120569e76d79f8d4096989e5e209ffa2, type: 3}
+  timeToCook: 7
+  timeToBurn: 8

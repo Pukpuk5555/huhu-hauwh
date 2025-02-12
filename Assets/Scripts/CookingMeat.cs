@@ -10,9 +10,12 @@ public class CookingMeat : IngredientsCooking
     private Color burnedColor = new Color(0.1f, 0.1f, 0.1f);
     private Coroutine cookingCoroutine;
 
+    [SerializeField] private AudioSource grillAudio;
+
     protected override void Start()
     {
         base.Start();
+        grillAudio = GetComponent<AudioSource>();
     }
 
     public override void StartCooking()
@@ -33,12 +36,14 @@ public class CookingMeat : IngredientsCooking
             Debug.Log("Cooking stopped manually.");
         }
         base.StopCooking();
+        grillAudio.Stop();
     }
 
     private IEnumerator CookMeat()
     {
         float elapsedTime = 0f;
         Debug.Log("Meat is starting to cook...");
+        grillAudio.Play();
 
         // Cooking phase
         while(elapsedTime < timeToCook)
