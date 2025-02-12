@@ -19,9 +19,12 @@ public abstract class IngredientsCooking : MonoBehaviour
     protected Color rawColor;
     protected Color cookedColor = new Color(0.6f, 0.3f, 0.2f);
     protected float cookingTimer = 0f;
+
     protected bool isCooking = false;
+    public bool IsCooking { get { return isCooking; } }
 
     protected IngredientState ingredientState = IngredientState.Raw;
+    public IngredientState IngredientState { get { return ingredientState; } }
 
     protected virtual void Start()
     {

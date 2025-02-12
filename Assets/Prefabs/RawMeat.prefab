@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3714889660428196563}
   - component: {fileID: -5650528334393827380}
   - component: {fileID: 9082490686164239520}
+  - component: {fileID: 6834364275429725295}
   m_Layer: 0
   m_Name: RawMeat
   m_TagString: Meat
@@ -391,3 +392,19 @@ MonoBehaviour:
   cookedMeatSprite: {fileID: 21300000, guid: 120569e76d79f8d4096989e5e209ffa2, type: 3}
   timeToCook: 7
   timeToBurn: 8
+  grillAudio: {fileID: -5650528334393827380}
+--- !u!114 &6834364275429725295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324374205885351897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b22c7ac2efe92349a1d8efcfdb8bf43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireObject: {fileID: 0}
+  meatPilePos: {fileID: 0}
+  pickUpMeatAudio: {fileID: -3714889660428196563}
