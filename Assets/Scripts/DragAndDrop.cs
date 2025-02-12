@@ -9,8 +9,8 @@ public class DragAndDrop : MonoBehaviour
 
     private IngredientsCooking cookingScript;
 
-    [SerializeField] private GameObject fireObject;
-    [SerializeField] private GameObject meatPilePos;
+    public Transform fireObject;
+    [SerializeField] private Transform meatPilePos;
     private static bool isFireOccupied = false;
 
     private int defaultLayer = 5;
