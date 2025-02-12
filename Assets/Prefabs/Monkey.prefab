@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7207606466924539839}
   - component: {fileID: -1300330151977475543}
   - component: {fileID: -1198894338897674902}
+  - component: {fileID: -8614684775813826647}
   m_Layer: 0
   m_Name: Monkey
   m_TagString: Monkey
@@ -54,6 +55,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -91,7 +95,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!50 &-6227510668092964266
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,8 +106,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -124,6 +128,7 @@ PolygonCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5973852320913458356}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -147,7 +152,8 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,6 +254,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 65e9c1a0f66eea64cac7c5da980418dc, type: 3}
+  m_Resource: {fileID: 8300000, guid: 65e9c1a0f66eea64cac7c5da980418dc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -344,6 +351,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 03f91702bcc8ba6458a993b7ed7a0a09, type: 3}
+  m_Resource: {fileID: 8300000, guid: 03f91702bcc8ba6458a993b7ed7a0a09, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -440,6 +448,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 428ed731c44c4aa4eb309f4c02a7fae3, type: 3}
+  m_Resource: {fileID: 8300000, guid: 428ed731c44c4aa4eb309f4c02a7fae3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -525,3 +534,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8614684775813826647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5973852320913458356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cddf91331e74e4295bffa27b4bd944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monkeyDeliciousAudio: {fileID: 7207606466924539839}
+  monkeyNeutralAudio: {fileID: -1300330151977475543}
+  monkeyAngryAudio: {fileID: -1198894338897674902}

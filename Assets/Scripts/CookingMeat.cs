@@ -58,8 +58,9 @@ public class CookingMeat : IngredientsCooking
         // Cooked
         ingredientState = IngredientState.Cooked;
         spriteRenderer.sprite = cookedMeatSprite;
-        spriteRenderer.color = cookedColor;
+        spriteRenderer.color = Color.white;
         Debug.Log("Meat is cooked.");
+        yield return new WaitForSeconds(2f);
 
         // Overcooking phase
         while(elapsedTime < timeToBurn)
@@ -76,5 +77,19 @@ public class CookingMeat : IngredientsCooking
         ingredientState = IngredientState.Burned;
         spriteRenderer.color = burnedColor;
         Debug.Log("Meat is burned.");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Monkey"))
+        {
+            Debug.Log($"Hit {collision.gameObject.name}");
+
+            Customer customerScript = collision.GetComponent<Customer>();
+            if (customerScript != null)
+            {
+                customerScript.ServeMeat(gameObject);
+            }
+        }
     }
 }

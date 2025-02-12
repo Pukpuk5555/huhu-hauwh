@@ -15,11 +15,11 @@ public class Customer : MonoBehaviour
 
     public void ServeMeat(GameObject meat)
     {
-        CookedMeat meatScript = meat.GetComponent<CookedMeat>();
+        CookingMeat meatScript = meat.GetComponent<CookingMeat>();
 
         if(meatScript != null)
         {
-            switch (meatScript.curMeatState)
+            switch (meatScript.IngredientState)
             {
                 case IngredientState.Cooked:
                     Debug.Log("Monkey got cooked meat. Monkey's satisfied.");
