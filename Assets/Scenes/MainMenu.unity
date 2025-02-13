@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 13fba0b178b738d408544bc5ef8b851a, type: 3}
+  pauseMenuUI: {fileID: 0}
+  exitUI: {fileID: 0}
 --- !u!4 &6380676
 Transform:
   m_ObjectHideFlags: 0
@@ -862,7 +864,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6380675}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: PlayClickPlayGame
+        m_MethodName: PlayButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

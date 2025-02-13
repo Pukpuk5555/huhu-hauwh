@@ -24,7 +24,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void PlayClickPlayGame()
+    public void PlayButton()
+    {
+        audioSource.PlayOneShot(clickSound);
+        SceneManager.LoadScene(2);
+    }
+
+    public void PlayClickSkip()
     {
         if (clickSound != null)
         {
