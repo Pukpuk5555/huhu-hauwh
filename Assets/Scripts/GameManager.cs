@@ -53,6 +53,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void RestartG2()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(3);
+    }
+
     public void PlayClickPause()
     {
         if (clickSound != null)
