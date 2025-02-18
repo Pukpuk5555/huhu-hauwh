@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public class DragAndDrop : MonoBehaviour
 
     private int defaultLayer = 5;
     private int pickUpLayer = 6;
-
+    bool isOverCookingArea;
     private CursorManager cursorManager;
 
     [SerializeField] private AudioSource pickUpMeatAudio;
@@ -32,7 +32,7 @@ public class DragAndDrop : MonoBehaviour
     private void OnMouseDown()
     {
         cursorManager.SetHandCursor();
-
+        Debug.LogWarning("Click");
         if(isFireOccupied && cookingScript.IngredientState == IngredientState.Cooking)
         {
             Debug.Log("Cannot pick up meat while another one is cooking.");
@@ -48,9 +48,9 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        Debug.LogWarning("Drage");
         cursorManager.SetHandCursor();
-
-        if(isDragging)
+        if (isDragging)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
@@ -64,7 +64,7 @@ public class DragAndDrop : MonoBehaviour
 
         isDragging = false;
         spriteRenderer.sortingOrder = defaultLayer;
-
+        Debug.Log($"isOverLape: {IsOverCookingArea()} and IsCooking: {!cookingScript.IsCooking}");
         if(IsOverCookingArea() && !cookingScript.IsCooking)
         {
             transform.position = fireObject.transform.position;
@@ -86,6 +86,7 @@ public class DragAndDrop : MonoBehaviour
 
     private bool IsOverCookingArea()
     {
+        return isOverCookingArea;
         Collider2D hitCollider = Physics2D.OverlapPoint(transform.position);
 
         if(hitCollider != null && hitCollider.CompareTag("CookingArea"))
@@ -95,11 +96,18 @@ public class DragAndDrop : MonoBehaviour
         }
         return false;
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CookingArea"))
+        {
+            isOverCookingArea = true;
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.CompareTag("CookingArea"))
         {
+            isOverCookingArea = false;
             Debug.Log($"{gameObject.name} removed from cooking area.");
 
             if(cookingScript.IsCooking)
