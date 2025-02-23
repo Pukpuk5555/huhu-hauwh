@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Customer : MonoBehaviour
 {
+    [SerializeField] private GameObject orderCanvas;
+    [SerializeField] private Transform headPosition;
     [SerializeField] private GameObject orderUI;
     [SerializeField] private Slider satisfactionBar;
 
@@ -18,9 +20,17 @@ public class Customer : MonoBehaviour
 
     private void Start()
     {
-        orderUI.SetActive(true);
+        orderUI.SetActive(false);
         StartCoroutine(DecreaseSatisfaction());
         monkeyDeliciousAudio = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (orderCanvas != null)
+        {
+            orderCanvas.transform.position = headPosition.position;
+        }
     }
 
     public void ServeMeat(GameObject meat)
