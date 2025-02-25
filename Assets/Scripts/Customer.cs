@@ -10,7 +10,7 @@ public class Customer : MonoBehaviour
     [SerializeField] private GameObject orderUI;
     [SerializeField] private Slider satisfactionBar;
 
-    private float satisfaction = 1f;
+    private float satisfaction = 0.5f;
     private float decreaseRate = 0.2f;
     private bool isServe = false;
 
@@ -86,6 +86,8 @@ public class Customer : MonoBehaviour
 
         int score = Mathf.RoundToInt(satisfaction * 100);
         ScoreManager.Instance.AddScore(score);
+
+        CustomerManager.instance.ServeCustomer(this);
 
         Leave();
     }
