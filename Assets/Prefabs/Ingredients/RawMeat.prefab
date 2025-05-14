@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5650528334393827380}
   - component: {fileID: 9082490686164239520}
   - component: {fileID: 6834364275429725295}
-  - component: {fileID: -13268183248805739}
+  - component: {fileID: 5839088032295261104}
   m_Layer: 0
   m_Name: RawMeat
   m_TagString: Meat
@@ -416,7 +416,7 @@ MonoBehaviour:
   fireObject: {fileID: 0}
   meatPilePos: {fileID: 0}
   pickUpMeatAudio: {fileID: -3714889660428196563}
---- !u!114 &-13268183248805739
+--- !u!114 &5839088032295261104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
